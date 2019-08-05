@@ -12,8 +12,11 @@ public class AdminController {
 	
 	
 	public void adminProcess() {
-		//userInput();
+		userInput();
 		userInputUpdate();
+	    userListDisplay();
+		userEmployeeByID();
+		userDeleteEmployeeByID();
 	}
 	
 	void userInput() {
@@ -45,15 +48,47 @@ public class AdminController {
 		int empID = sc.nextInt();
 		refEmployee.setEmployeeID(empID);
 		
-		System.out.println("Enter employee Name");
+		System.out.println("Enter changed employee Name");
 		String empName = sc.next();
 		refEmployee.setEmployeeName(empName);
 		
-		System.out.println("Enter employee Password");
+		System.out.println("Enter changed employee Password");
 		String empPassword = sc.next();
 		refEmployee.setEmployeePassword(empPassword);
 		
 		refEmployeeService.callUpdateEmployee(refEmployee);
+		
+	}
+	
+	void userListDisplay() {
+		System.out.println("Listing all employees.......");
+		refEmployee = new Employee();
+		refEmployeeService = new EmployeeServiceImpl();
+		refEmployeeService.callListEmployee(refEmployee);
+		
+	}
+	
+	void userEmployeeByID() {
+		System.out.println("Enter Employee ID of employee to display:");
+		refEmployee = new Employee();
+		refEmployeeService = new EmployeeServiceImpl();
+		Scanner sc = new Scanner(System.in);
+		int empID = sc.nextInt();
+		refEmployee.setEmployeeID(empID);
+		refEmployeeService.callEmployeeId(refEmployee);
+		
+		
+	}
+	
+	void userDeleteEmployeeByID() {
+		System.out.println("Enter Employee ID of employee to delete:");
+		refEmployee = new Employee();
+		refEmployeeService = new EmployeeServiceImpl();
+		Scanner sc = new Scanner(System.in);
+		int empID = sc.nextInt();
+		refEmployee.setEmployeeID(empID);
+		refEmployeeService.callDeleteEmployeeId(refEmployee);
+		
 		
 	}
 	
